@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文章</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+	<!-- 头部框架开始 -->
+	<div class="header">
+		<div class="w1100">
+			<!-- 网站logo开始 -->
+			<h1 class="logo fl" style="width: 100%">
+				<a href="http://107.172.190.129" style="line-height: 60px;color: #ffffff;font-size: 15px;float: left;width: auto;font-weight: lighter">首页</a>
+				<a href="http://107.172.190.129/game/" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#BDBDBD'" style="line-height: 60px;color: #BDBDBD;font-size: 15px;float: left;margin-left: 30px;width: auto;font-weight: lighter;">H5小游戏</a>
+				<a href="index.html" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#BDBDBD'" style="line-height: 60px;color: #BDBDBD;font-size: 15px;float: left;margin-left: 30px;width: auto;font-weight: lighter;">常用资源</a>
+				<a href="index.html" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#BDBDBD'" style="line-height: 60px;color: #BDBDBD;font-size: 15px;float: left;margin-left: 30px;width: auto;font-weight: lighter">联系我</a>
+			</h1>
+			<!-- 网站logo结束 -->
+			<!-- 网站导航开始 -->
+<!--			<ul class="navigation fr">-->
+<!--				<li>-->
+<!--					<a href="index.html">首页</a>-->
+<!--				</li>-->
+<!--				<li>-->
+<!--					<a href="#">登录</a>-->
+<!--				</li>-->
+<!--				<li>-->
+<!--					<a href="#">注册</a>-->
+<!--				</li>-->
+<!--			</ul>-->
+			<!-- 网站导航结束 -->
+		</div>
+	</div>
+	<!-- 头部框架结束 -->
+	<!-- 文章框架开始 -->
+	<div class="article">
+		<div class="w1100">
+			<div class="container">
+				<div class="article-header">
+					<h1 class="article-title">JS/HTML5游戏常用算法之碰撞检测</h1>
+					<div class="article-info">
+						<span class="author">XR</span>
+<!--						<span>2019-02-10</span>-->
+					</div>
+				</div>
+				<div class="article-content">
+<!--					<h2></h2>-->
+<!--					<p><font color="Gainsboro">淡显</font></p>-->
+					<p>矩形包围盒，顾名思义，就是使用一个矩形来包围住图像，矩形的大小以刚好包围住图像为最佳，这种包围盒最适用的场景是刚好物体的形状接近于矩形。在具体的应用中，描述矩形包围盒的的常用方式有以下两种，</p>
+					<h2>一：采用最小最大顶点法描述AABB包围盒</h2>
+					<div style="text-align: center">
+						<img src="../../images/C1.png">
+					</div>
+					<p>上图中使用了最小最大顶点法来描述包围盒信息，由于是在屏幕坐标系中，y轴是向下延伸的，所以只需要保留矩形中坐标的最小值和最大值即可，即矩形的左上角和右下角的顶点，其他的点都在这两个点范围内。</p>
+					<p>在这种情况下要判断两个矩形是否碰撞只需要比较两个矩形顶点的坐标即可，假设矩形 A用(x1, y1)表示左上角，(x2, y2)表示右下角，矩形B用(x3, y3)表示左上角，(x4, y4)表示右下角，则满足下列条件则表示没有碰撞，反之则碰撞。</p>
+					<p style="text-align: center">·没碰撞：x1>x4 或者x2<x3。</p>
+					<p style="text-align: center">·没碰撞：y1>y4 或者y2<y3。</p>
+					<br/>
+					<br/>
+					<br/>
+					<h2>二：采用点和半径描述AABB包围盒</h2>
+					<div style="text-align: center">
+						<img src="../../images/C2.png">
+					</div>
+					<p>在上图中使用了中心点和对应两个轴的半径来描述包围盒信息，假设有两个矩形A和B，矩形A 的中心坐标为A(x1, y1)，宽度和高度分别为rx1、ry1，矩形B 的中心坐标为B(x2, y2)，宽度和高度分别为rx1、ry1，矩形B 的中心坐标为B(x2, y2)，宽度和高度分别是rx2、ry2，则采用这种包围盒检测方式如下。</p>
+					<p>如果满足两个矩形在x方向的距离小于两个矩形宽度和的一半，并且在y方向上的距离小于两个矩形高度和的一半则表示两个矩形有重叠，即表示发生碰撞，换成公式如下：</p>
+					<p style="text-align: center">X方向满足：|x2-x1|<=rx1+rx2并且Y方向满足：|y2-y1|<=ry1+ry2</p>
+					<p>Math.abs获取绝对值，第一种只是单纯使用了坐标比较。</p>
+					<p>以上所描述的矩形包围盒也称为 AABB（轴对齐）包围盒，轴对齐包围盒中的矩形的四条边分别和坐标轴平行，实际上也就是表示该矩形没有进行过旋转操作，使用轴对齐包围盒检测算法比较简单高效，精度上也能满足大多数条件，因此实际应用中也比较多。</p>
+
+
+				</div>
+				<div class="article-comment">
+					<h4>评论</h4>
+					
+					<form class="comment-form" action="/#" method="post">
+						<textarea class="comment" name="content" placeholder="暂未开放评论"></textarea>
+						<div class="items">
+							<input type="submit" value="提交" >
+						</div>
+					</form>
+<!--					<div class="comment-list">-->
+<!--						<div class="mb10">-->
+<!--							<div class="article-info">-->
+<!--								<span class="author">Coder</span>-->
+<!--								<span>2020-09-10</span>-->
+<!--								<span>wjb19891223@163.com</span>-->
+<!--							</div>-->
+<!--							<div class="comment-content">-->
+<!--								nice 就是这样, 非常好 !-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 文章框架结束 -->
+</body>
+</html>
